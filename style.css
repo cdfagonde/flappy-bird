@@ -36,14 +36,16 @@ body {
 }
 
 .sky {
-    background-color: aqua;
+    /* background-color: aqua; */
+    background-image: url('./fb-game-background.png');
     width: 500px;
     height: 580px;
     position: absolute;
 }
 
 .ground {
-    background-color: rgb(150, 58, 58);
+    /* background-color: rgb(150, 58, 58); */
+    background-image: url('./bottom-background.png');
     width: 500px;
     height: 150px;
     position: absolute;
@@ -52,11 +54,12 @@ body {
 }
 
 .bird {
-    background-color: yellow;
+    /* background-color: yellow; */
+    /* border: black 1px solid; */
+    background-image: url('./flappy-bird.png');
     width: 60px;
     height: 45px;
     position: absolute;
-    border: black 1px solid;
 }
 
 .obstacle {

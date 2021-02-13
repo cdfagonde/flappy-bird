@@ -26,12 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
         bird.style.bottom = birdBottom + 'px'
         // console.log(birdBottom)
     }
+
+    // Con la función pronta, ya podemos capturar el evento
     document.addEventListener('keyup', control)
 
+    // Obstáculos
     function generateObstable() {
+        // Posición izquiera del nuevo obstáculo
         let obstacleLeft = 500
+        // Altura será variable y al azar
         let randomHeight = Math.random() * 120
         let obstacleBottom = randomHeight
+        // 
         let obstacleTimerId 
         const gap = 450
 
@@ -52,38 +58,48 @@ document.addEventListener('DOMContentLoaded', () => {
         obstacle.style.bottom = obstacleBottom + 'px'
         topObstacle.style.bottom = (obstacleBottom + gap) + 'px'
 
+        // Movimientos de los obstáculos
         function moveObstacle() {
+            // Obstáculos 2 pixels para izquierda
             obstacleLeft -= 2
             obstacle.style.left = obstacleLeft + 'px'
             topObstacle.style.left = obstacleLeft + 'px'
 
+            // Quando los obstáculos lleguen al límite izquierdo
             if (obstacleLeft === 0) {
                 clearInterval(obstacleTimerId)
                 gameDisplay.removeChild(obstacle)
                 gameDisplay.removeChild(topObstacle)
             }
+
+            // Si el pájaro choca contra el obstáculo inferior
+            // O contra el obstáculo superior
+            // o contra el piso
             if (
-                 // (obstacleLeft > 200 && obstacleLeft < 280 && birdLeft === 220) &&
-                 // (birdBottom < obstacleBottom + 153 || birdBottom > obstacleBottom + gap - 211) ||
+                 (obstacleLeft > 200 && obstacleLeft < 280 && birdLeft === 220) &&
+                 (birdBottom < obstacleBottom + 153 || birdBottom > obstacleBottom + gap - 211) ||
                  birdBottom === 0
                ) {
-                // console.log(birdBottom)
-                // console.log(obstacleBottom + gap - 211)
-
+                // Acabó el juego
                 gameOver()
                 clearInterval(obstacleTimerId)
             }
         }
+        // Obstáculos se mueven a cada 20 ms
         obstacleTimerId = setInterval(moveObstacle,20)
-        if (!isGameOver) setTimeout(generateObstable,2000)
+        // Mientras el juego no termina, creamos nuevos obstáculos a cada 3 segundos
+        if (!isGameOver) setTimeout(generateObstable,3000)
     }
-    if (!isGameOver) generateObstable()
+    // Generamos el obstáculo inicial, depois de 5 segundos suspenso
+    if (!isGameOver) setTimeout(generateObstable,5000)
 
+    // Para finalizar el juego
     function gameOver() {
+        if (isGameOver) return
         clearInterval(gameTimerId)
-        isGameOver = true
         console.log('Game over!')
         document.removeEventListener('keyup',control)
+        isGameOver = true
     }
     
 })
