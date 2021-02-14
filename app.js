@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Con la función pronta, ya podemos capturar el evento
     document.addEventListener('keyup', control)
+    document.addEventListener('click', jump)
 
     // Obstáculos
     function generateObstable() {
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(gameTimerId)
         console.log('Game over!')
         document.removeEventListener('keyup',control)
+        document.removeEventListener('click',jump)
         isGameOver = true
     }
     
