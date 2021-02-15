@@ -53,6 +53,16 @@ body {
     z-index: +1;
 }
 
+.score {
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    font-size: xx-large;
+    font-weight: bold;
+    color: rgb(29, 71, 37);
+
+}
+
 .bird {
     /* background-color: yellow; */
     /* border: black 1px solid; */
