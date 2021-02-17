@@ -13,18 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
         birdBottom -= gravity
         bird.style.bottom = birdBottom + 'px'
         bird.style.left = birdLeft + 'px'
+        if (birdBottom === 0) gameOver()
     }
     let gameTimerId = setInterval(startGame,20)
 
+    // Control das teclas
     function control(e) {
-
         // Saltareos con la barra de espacio o flecha para arriba
         if (e.keyCode === 32 || e.keyCode === 38) {
             jump()
         }
     }
 
-    function jump() {
+    // Controle do salto
+    function jump(e) {
         if (birdBottom <= 500) birdBottom += 50
         bird.style.bottom = birdBottom + 'px'
         // console.log(birdBottom)
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGameOver) setTimeout(generateObstable,2500)
     }
     // Generamos el obstáculo inicial, depois de 5 segundos suspenso
-    if (!isGameOver) setTimeout(generateObstable,4000)
+    if (!isGameOver) setTimeout(generateObstable,3000)
 
     // Para finalizar el juego
     function gameOver() {
